@@ -23,6 +23,7 @@ import java.util.concurrent.ExecutorService;
  * @author Adam Krejci
  */
 public class HHsuiteRunner {
+
     /**
      * Builds hmms in hhsuite format for collection of clusters using parallel
      * execution of multiple instances of hhmake. Clusters with hasHH == ture
@@ -234,7 +235,6 @@ public class HHsuiteRunner {
 
         int lettersCounted1 = 0;
         int position1 = 0;
-
         while (lettersCounted1 < startingLetter1) {
             if (alignedSeq1.charAt(position1) != '.' && alignedSeq1.charAt(position1) != '-') {
                 lettersCounted1++;
@@ -312,7 +312,6 @@ public class HHsuiteRunner {
         List<List<Integer>> result = new ArrayList<>();
         result.add(newGaps1);
         result.add(newGaps2);
-
         return result;
     }
 }
