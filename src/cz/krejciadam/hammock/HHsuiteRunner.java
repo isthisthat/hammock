@@ -23,7 +23,6 @@ import java.util.concurrent.ExecutorService;
  * @author Adam Krejci
  */
 public class HHsuiteRunner {
-
     /**
      * Builds hmms in hhsuite format for collection of clusters using parallel
      * execution of multiple instances of hhmake. Clusters with hasHH == ture
@@ -227,17 +226,23 @@ public class HHsuiteRunner {
         int startingLetter2 = Integer.parseInt(splitLine2[2]);
         String alignmentLine1 = splitLine1[3];
         String alignmentLine2 = splitLine2[3];
+        int endingLetter1 = Integer.parseInt(splitLine1[4]);
+        int endingLetter2 = Integer.parseInt(splitLine2[4]);
 
         List<Integer> newGaps1 = new ArrayList<>();
         List<Integer> newGaps2 = new ArrayList<>();
 
         int lettersCounted1 = 0;
         int position1 = 0;
+
         while (lettersCounted1 < startingLetter1) {
             if (alignedSeq1.charAt(position1) != '.' && alignedSeq1.charAt(position1) != '-') {
                 lettersCounted1++;
             }
             position1++;
+            if (lettersCounted1 == endingLetter1){ // avoids null pointer exception when resultLine is all gaps
+                break;
+            }
         }
 
         int lettersCounted2 = 0;
@@ -247,6 +252,9 @@ public class HHsuiteRunner {
                 lettersCounted2++;
             }
             position2++;
+            if (lettersCounted2 == endingLetter2){ // avoids null pointer exception when resultLine is all gaps
+                break;
+            }
         }
 
         if (position1 != position2) { //need to add gaps to beginining
@@ -304,6 +312,7 @@ public class HHsuiteRunner {
         List<List<Integer>> result = new ArrayList<>();
         result.add(newGaps1);
         result.add(newGaps2);
+
         return result;
     }
 }
