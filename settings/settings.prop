@@ -16,7 +16,7 @@
 #hhsearchOutDirectory=
 #fastaDatabaseFile=
 #Tool parameters. Generally, it is not recommended to change this section.
-clustalOmegaParameters=--wrap=999999
+clustalOmegaParameters=--wrap=999999 --cluster-size=500
 hmmbuildParameters=--enone --fragthresh 1.0 --hand --wnone --amino --seed 42 --cpu 0
 hmmsearchParameters=--nobias --F1 0.5 --F2 0.05 --F3 1e-2 --nonull2 --notextw -E 999999 --seed 42 --cpu 0
 hmmalignParameters=--outformat selex --amino --seed 42 --cpu 0
